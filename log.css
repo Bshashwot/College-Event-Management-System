@@ -2,11 +2,14 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, sans-serif;
+    font-family:Arial,sans-serif;
 }
 
 body{
-    background:#f4f4f4;
+    background:linear-gradient(rgba(13,110,253,0.4),rgba(13,110,253,0.4)),url("images/login-bg.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -14,54 +17,85 @@ body{
 }
 
 .login-container{
-    width:350px;
-    background:#fff;
-    padding:30px;
-    border-radius:10px;
-    box-shadow:0 0 15px rgba(0,0,0,0.2);
+    width:400px;
+    background:rgba(255,255,255,0.96);
+    padding:40px;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.25);
 }
 
 .login-container h2{
     text-align:center;
-    margin-bottom:20px;
+    color:#0d6efd;
+    font-size:32px;
+    margin-bottom:8px;
+}
+
+.login-container h2::after{
+    content:"";
+    display:block;
+    width:60px;
+    height:3px;
+    background:#0d6efd;
+    margin:10px auto 0;
 }
 
 .input-group{
-    margin-bottom:15px;
+    margin-top:20px;
 }
 
 .input-group label{
     display:block;
-    margin-bottom:5px;
+    margin-bottom:8px;
     font-weight:bold;
+    color:#333;
 }
 
 .input-group input{
     width:100%;
-    padding:10px;
+    padding:13px;
     border:1px solid #ccc;
-    border-radius:5px;
-    font-size:16px;
+    border-radius:8px;
+    font-size:15px;
+    transition:0.3s;
 }
 
 .input-group input:focus{
-    border-color:#007bff;
+    border-color:#0d6efd;
+    box-shadow:0 0 8px rgba(13,110,253,0.3);
     outline:none;
 }
 
 button{
     width:100%;
-    padding:10px;
-    background:#007bff;
-    color:white;
+    padding:13px;
+    margin-top:25px;
     border:none;
-    border-radius:5px;
+    border-radius:8px;
+    background:#0d6efd;
+    color:white;
     font-size:16px;
     cursor:pointer;
+    transition:0.3s;
 }
 
 button:hover{
-    background:#0056b3;
+    background:#084298;
+    transform:translateY(-2px);
 }
 
+.signup-link{
+    text-align:center;
+    margin-top:20px;
+    font-size:15px;
+}
 
+.signup-link a{
+    text-decoration:none;
+    color:#0d6efd;
+    font-weight:bold;
+}
+
+.signup-link a:hover{
+    text-decoration:underline;
+}
