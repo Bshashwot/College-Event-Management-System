@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrations</title>
+    <link rel="stylesheet" href="reg.css">
+</head>
+
+<body>
+
+    <div class="sidebar">
+
+        <div class="logo">
+            <h2>CEMS</h2>
+            <p>Admin Panel</p>
+        </div>
+
+        <ul>
+            <li><a href="admindashboard.html">Dashboard</a></li>
+            <li><a href="aevent.html">Add Event</a></li>
+            <li><a href="manageevent.html">Manage Events</a></li>
+            <li><a href="mstudent.html">Manage Students</a></li>
+            <li><a href="#" class="active">Registrations</a></li>
+            <li><a href="notifications.html">Notifications</a></li>
+            <li><a href="reports.html">Reports</a></li>
+            <li><a href="../index.html">Logout</a></li>
+        </ul>
+
+    </div>
+
+    <div class="main">
+
+        <div class="topbar">
+            <h1>Registrations</h1>
+            <p>View and manage event registrations</p>
+        </div>
+
+        <div class="registration-box">
+
+            <div class="header">
+                <input type="text" placeholder="Search Registration">
+            </div>
+
+            <table>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Student Name</th>
+                    <th>Event</th>
+                    <th>Registration Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+
+                <tr>
+                    <td>1</td>
+                    <td>Ram Sharma</td>
+                    <td>AI Workshop</td>
+                    <td>10 Aug 2026</td>
+                    <td><span class="approved">Approved</span></td>
+                    <td>
+                        <button class="view">View</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td>Shashwot Belbase</td>
+                    <td>Hackathon</td>
+                    <td>12 Aug 2026</td>
+                    <td><span class="pending">Pending</span></td>
+                    <td>
+                        <button class="approve">Approve</button>
+                        <button class="reject">Reject</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>3</td>
+                    <td>Hari Thapa</td>
+                    <td>Sports Meet</td>
+                    <td>14 Aug 2026</td>
+                    <td><span class="approved">Approved</span></td>
+                    <td>
+                        <button class="view">View</button>
+                    </td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

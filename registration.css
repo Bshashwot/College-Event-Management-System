@@ -38,8 +38,13 @@ nav ul li a{
     font-weight:bold;
 }
 
+nav ul li a:hover{
+    text-decoration:underline;
+}
+
 .registration{
     padding:60px 8%;
+    min-height:calc(100vh - 130px);
 }
 
 .registration h1{
@@ -48,7 +53,7 @@ nav ul li a{
     margin-bottom:15px;
 }
 
-.registration p{
+.registration > p{
     text-align:center;
     margin-bottom:35px;
 }
@@ -65,7 +70,8 @@ nav ul li a{
     background:white;
     padding:25px;
     border-radius:10px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    border:1px solid #ddd;
 }
 
 .registration-card h2{
@@ -74,13 +80,23 @@ nav ul li a{
 }
 
 .registration-card p{
-    text-align:left;
     margin-bottom:12px;
+}
+
+.approved{
+    color:green;
+    font-weight:bold;
+}
+
+.pending{
+    color:#e09b00;
+    font-weight:bold;
 }
 
 .buttons{
     display:flex;
     justify-content:space-between;
+    gap:10px;
     margin-top:20px;
 }
 
@@ -98,9 +114,35 @@ button:hover{
 }
 
 footer{
-    margin-top:40px;
     background:#0d6efd;
     color:white;
     text-align:center;
     padding:15px;
+}
+
+@media(max-width:768px){
+
+    header{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    nav ul{
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:10px;
+    }
+
+    nav ul li{
+        margin-left:0;
+    }
+
+    .registration{
+        padding:40px 5%;
+    }
+
+    .registration-card{
+        width:100%;
+        max-width:400px;
+    }
 }

@@ -1,48 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Student Login</title>
     <link rel="stylesheet" href="log.css">
 </head>
+
 <body>
 
-    <div class="login-container">
-        <h2>Login</h2>
+<div class="login-container">
 
-        <form autocomplete="off">
+    <h2>Student Login</h2>
 
-            <div class="input-group">
-                <label for="username">Username</label>
-                <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    placeholder="Enter your username"
-                    autocomplete="off"
-                    required>
-            </div>
+    <form action="login.php" method="POST" autocomplete="off">
 
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="Enter your password"
-                    autocomplete="new-password"
-                    required>
-            </div>
+        <div class="input-group">
 
-            <button type="submit">Login</button>
-<div class="signup-link">
-    Don't have an account?
-    <a href="sign.html">Sign Up</a>
-</div>
-        </form>
+            <label for="student_id">
+                Student ID
+            </label>
+
+            <input type="text" name="student_id" required>
+
+        </div>
+
+        <div class="input-group">
+
+            <label for="password">
+                Password
+            </label>
+
+            <input type="password" name="password" required>
+
+        </div>
+
+        <button type="submit">
+            Login
+        </button>
+
+    </form>
+
+    <div class="signup-link">
+
+        Don't have an account?
+
+        <a href="sign.html">
+            Sign Up
+        </a>
 
     </div>
 
+</div>
+
 </body>
+
 </html>

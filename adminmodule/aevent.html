@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Event</title>
+
+    <link rel="stylesheet" href="aevent.css">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <div class="logo">
+        <h2>CEMS</h2>
+        <p>Admin Panel</p>
+    </div>
+
+    <ul>
+
+        <li><a href="admindashboard.html">Dashboard</a></li>
+
+        <li><a href="aevent.html">Add Event</a></li>
+
+        <li><a href="manageevent.html">Manage Events</a></li>
+
+        <li><a href="mstudent.html">Manage Students</a></li>
+
+        <li><a href="reg.html">Registrations</a></li>
+
+        <li><a href="notfication.httml">Notifications</a></li>
+
+        <li><a href="report.html">Reports</a></li>
+
+        <li><a href="index.html">Logout</a></li>
+
+    </ul>
+
+</div>
+
+<div class="main">
+
+    <div class="topbar">
+
+        <div>
+
+            <h1>Add Event</h1>
+
+            <p>Create a new college event</p>
+
+        </div>
+
+    </div>
+
+    <div class="form-container">
+
+        <form id="eventForm">
+
+            <div class="row">
+
+                <div class="input-box">
+
+                    <label>Event Name</label>
+
+                    <input type="text" placeholder="Enter Event Name" required>
+
+                </div>
+
+                <div class="input-box">
+
+                    <label>Category</label>
+
+                    <select required>
+
+                        <option>Select Category</option>
+                        <option>Workshop</option>
+                        <option>Seminar</option>
+                        <option>Hackathon</option>
+                        <option>Sports</option>
+                        <option>Cultural</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="input-box">
+
+                    <label>Event Date</label>
+
+                    <input type="date" required>
+
+                </div>
+
+                <div class="input-box">
+
+                    <label>Event Time</label>
+
+                    <input type="time" required>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="input-box">
+
+                    <label>Venue</label>
+
+                    <input type="text" placeholder="Enter Venue" required>
+
+                </div>
+
+                <div class="input-box">
+
+                    <label>Organizer</label>
+
+                    <input type="text" placeholder="Organizer Name" required>
+
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="input-box">
+
+                    <label>Maximum Participants</label>
+
+                    <input type="number" placeholder="100" required>
+
+                </div>
+
+                <div class="input-box">
+
+                    <label>Status</label>
+
+                    <select>
+
+                        <option>Pending</option>
+                        <option>Approved</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="input-box">
+
+                <label>Description</label>
+
+                <textarea rows="6" placeholder="Write event description..." required></textarea>
+
+            </div>
+
+            <div class="input-box">
+
+                <label>Upload Event Banner</label>
+
+                <input type="file">
+
+            </div>
+
+            <div class="buttons">
+
+                <button type="submit">Add Event</button>
+
+                <button type="reset" class="reset">Reset</button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="add-event.js"></script>
+
+</body>
+
+</html>

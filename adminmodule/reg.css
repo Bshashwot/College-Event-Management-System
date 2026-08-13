@@ -1,0 +1,172 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#eef3f9;
+}
+
+.sidebar{
+    position:fixed;
+    width:250px;
+    height:100vh;
+    background:#0d6efd;
+    padding:25px;
+    color:white;
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.logo h2{
+    font-size:30px;
+    margin-bottom:5px;
+}
+
+.logo p{
+    font-size:14px;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar li{
+    margin:15px 0;
+}
+
+.sidebar a{
+    display:block;
+    padding:12px 18px;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+}
+
+.sidebar a:hover,
+.sidebar a.active{
+    background:white;
+    color:#0d6efd;
+}
+
+.main{
+    margin-left:250px;
+    padding:30px;
+}
+
+.topbar{
+    background:white;
+    padding:20px 30px;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+    margin-bottom:25px;
+}
+
+.topbar h1{
+    color:#0d6efd;
+    margin-bottom:5px;
+}
+
+.topbar p{
+    color:#666;
+}
+
+.registration-box{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.header{
+    margin-bottom:20px;
+}
+
+.header input{
+    width:300px;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    outline:none;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:12px;
+    text-align:center;
+}
+
+th{
+    background:#0d6efd;
+    color:white;
+}
+
+tr:hover{
+    background:#f2f7ff;
+}
+
+.approved{
+    color:green;
+    font-weight:bold;
+}
+
+.pending{
+    color:#e09b00;
+    font-weight:bold;
+}
+
+button{
+    border:none;
+    padding:7px 12px;
+    border-radius:5px;
+    color:white;
+    cursor:pointer;
+}
+
+.view{
+    background:#198754;
+}
+
+.approve{
+    background:#0d6efd;
+}
+
+.reject{
+    background:#dc3545;
+}
+
+@media(max-width:768px){
+
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+    }
+
+    .main{
+        margin-left:0;
+        padding:20px;
+    }
+
+    .header input{
+        width:100%;
+    }
+
+    .registration-box{
+        overflow-x:auto;
+    }
+
+    table{
+        min-width:800px;
+    }
+}

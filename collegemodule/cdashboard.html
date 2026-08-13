@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Dashboard</title>
+    <link rel="stylesheet" href="cdashboard.css">
+</head>
+
+<body>
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>🎓 CEMS</h2>
+            <p>College Panel</p>
+        </div>
+
+        <nav>
+            <a href="cdashboard.html" class="active">Dashboard</a>
+            <a href="eventrq.html">Event Requests</a>
+            <a href="approved.html">Approved Events</a>
+            <a href="notification.html">Notifications</a>
+            <a href="profile.html">Profile</a>
+            <a href="log">Logout</a>
+        </nav>
+
+    </aside>
+
+    <main class="main">
+
+        <div class="topbar">
+            <h1>College Dashboard</h1>
+            <p>Manage and monitor college events.</p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Total Events</h3>
+                <h2></h2>
+            </div>
+
+            <div class="card">
+                <h3>Pending Events</h3>
+                <h2>4</h2>
+            </div>
+
+            <div class="card">
+                <h3>Approved Events</h3>
+                <h2>7</h2>
+            </div>
+
+            <div class="card">
+                <h3>Rejected Events</h3>
+                <h2>1</h2>
+            </div>
+
+        </div>
+
+        <div class="requests">
+
+            <div class="request-header">
+                <h2>Recent Event Requests</h2>
+                <a href="approval.html">View All</a>
+            </div>
+
+            <table>
+
+                <tr>
+                    <th>Event</th>
+                    <th>Date</th>
+                    <th>Organizer</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+
+                <tr>
+                    <td>AI Workshop</td>
+                    <td>15 Aug 2026</td>
+                    <td>Computer Department</td>
+                    <td class="pending">Pending</td>
+                    <td><a href="approval.html">Review</a></td>
+                </tr>
+
+                <tr>
+                    <td>Hackathon 2026</td>
+                    <td>25 Aug 2026</td>
+                    <td>IT Club</td>
+                    <td class="approved">Approved</td>
+                    <td><a href="approved.html">View</a></td>
+                </tr>
+
+                <tr>
+                    <td>Sports Meet</td>
+                    <td>5 Sep 2026</td>
+                    <td>Sports Department</td>
+                    <td class="pending">Pending</td>
+                    <td><a href="approval.html">Review</a></td>
+                </tr>
+
+            </table>
+
+        </div>
+
+        <div class="quick-links">
+
+            <h2>Quick Access</h2>
+
+            <div class="quick-container">
+
+                <a href="approval.html">
+                    <h3>Event Requests</h3>
+                    <p>Review pending event requests.</p>
+                </a>
+
+                <a href="approved.html">
+                    <h3>Approved Events</h3>
+                    <p>View all approved college events.</p>
+                </a>
+
+                <a href="notification.html">
+                    <h3>Notifications</h3>
+                    <p>Check recent event notifications.</p>
+                </a>
+
+                <a href="profile.html">
+                    <h3>Profile</h3>
+                    <p>View college profile information.</p>
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>
