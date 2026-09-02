@@ -18,28 +18,31 @@
 <div class="sidebar">
 
     <div class="logo">
-
-        <h2>🎓CEMS</h2>
-
+        <a href="admindashboard.php" style="text-decoration:none; color:white;">
+            <h2>🎓 CEMS</h2>
+            <p style="font-size:12px; color:#cfd8dc;">Admin Panel</p>
+        </a>
     </div>
 
     <ul>
 
-        <li><a href="#" class="active">Dashboard</a></li>
+        <li><a href="admindashboard.php" class="active">Dashboard</a></li>
 
         <li><a href="aevent.html">Add Event</a></li>
 
-        <li><a href="manageevent.html">Manage Events</a></li>
+        <li><a href="manageevent.php">Manage Events</a></li>
 
-        <li><a href="mstudent.html">Manage Students</a></li>
+        <li><a href="mstudent.php">Manage Students</a></li>
 
-        <li><a href="reg.html">Registrations</a></li>
+        <li><a href="reg.php">Registrations</a></li>
 
-        <li><a href="notification.html">Notifications</a></li>
+        <li><a href="notification.php">Notifications</a></li>
 
-        <li><a href="reports.html">Reports</a></li>
+        <li><a href="report.php">Reports</a></li>
 
-        <li><a href="../index.html">Logout</a></li>
+        <li><a href="logout.php">Logout</a></li>
+
+        <li style="margin-top:15px; border-top:1px solid rgba(255,255,255,0.15);"><a href="../index.html">← Public Home</a></li>
 
     </ul>
 
@@ -219,9 +222,9 @@
 
                 <h2>Quick Actions</h2>
 
-                <button>Add Event</button>
-                <button>Manage Students</button>
-                <button>View Reports</button>
+                <a href="aevent.html"><button type="button">Add Event</button></a>
+                <a href="mstudent.php"><button type="button">Manage Students</button></a>
+                <a href="report.php"><button type="button">View Reports</button></a>
 
             </div>
 

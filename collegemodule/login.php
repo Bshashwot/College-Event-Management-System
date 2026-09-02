@@ -1,44 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+session_start();
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>College Login</title>
-    <link rel="stylesheet" href="login.css">
-</head>
+include "../config/db.php";
 
-<body>
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    <div class="login-box">
+    $college_id = trim($_POST["college_id"]);
+    $password = $_POST["password"];
 
-        <h2>🎓 CEMS</h2>
-        <h3>College Login</h3>
+    $sql = "SELECT * FROM college WHERE college_id = ? OR email = ?";
 
-        <form>
+    $stmt = mysqli_prepare($conn, $sql);
 
-            <label for="username">College Username</label>
-            <input
-                type="text"
-                id="username"
-                placeholder="Enter username"
-                required>
+    if (!$stmt) {
+        die("Database Error: " . mysqli_error($conn));
+    }
 
-            <label for="password">Password</label>
-            <input
-                type="password"
-                id="password"
-                placeholder="Enter password"
-                required>
+    mysqli_stmt_bind_param($stmt, "ss", $college_id, $college_id);
 
-            <button type="submit">Login</button>
+    mysqli_stmt_execute($stmt);
 
-        </form>
+    $result = mysqli_stmt_get_result($stmt);
 
-        <a href="../index.html">Back to Home</a>
+    if (mysqli_num_rows($result) == 1) {
 
-    </div>
+        $college = mysqli_fetch_assoc($result);
 
-</body>
+        if ($password === $college["password"]) {
 
-</html>
+            $_SESSION["college_id"] = $college["college_id"];
+            $_SESSION["college_name"] = $college["name"];
+            $_SESSION["college_email"] = $college["email"];
+
+            mysqli_stmt_close($stmt);
+            mysqli_close($conn);
+
+            header("Location: cdashboard.php");
+            exit();
+
+        } else {
+
+            mysqli_stmt_close($stmt);
+            mysqli_close($conn);
+
+            echo "<script>
+                    alert('Incorrect password.');
+                    window.location.href='login.html';
+                  </script>";
+            exit();
+        }
+
+    } else {
+
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+
+        echo "<script>
+                alert('College account not found. Please check College ID / Email.');
+                window.location.href='login.html';
+              </script>";
+        exit();
+    }
+
+} else {
+
+    header("Location: login.html");
+    exit();
+
+}
+?>

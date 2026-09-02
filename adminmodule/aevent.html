@@ -18,27 +18,31 @@
 <div class="sidebar">
 
     <div class="logo">
-        <h2>CEMS</h2>
-        <p>Admin Panel</p>
+        <a href="admindashboard.php" style="text-decoration:none; color:white;">
+            <h2>🎓 CEMS</h2>
+            <p style="font-size:12px; color:#cfd8dc;">Admin Panel</p>
+        </a>
     </div>
 
     <ul>
 
-        <li><a href="admindashboard.html">Dashboard</a></li>
+        <li><a href="admindashboard.php">Dashboard</a></li>
 
-        <li><a href="aevent.html">Add Event</a></li>
+        <li><a href="aevent.html" class="active">Add Event</a></li>
 
-        <li><a href="manageevent.html">Manage Events</a></li>
+        <li><a href="manageevent.php">Manage Events</a></li>
 
-        <li><a href="mstudent.html">Manage Students</a></li>
+        <li><a href="mstudent.php">Manage Students</a></li>
 
-        <li><a href="reg.html">Registrations</a></li>
+        <li><a href="reg.php">Registrations</a></li>
 
-        <li><a href="notfication.httml">Notifications</a></li>
+        <li><a href="notification.php">Notifications</a></li>
 
-        <li><a href="report.html">Reports</a></li>
+        <li><a href="report.php">Reports</a></li>
 
-        <li><a href="index.html">Logout</a></li>
+        <li><a href="logout.php">Logout</a></li>
+
+        <li style="margin-top:15px; border-top:1px solid rgba(255,255,255,0.15);"><a href="../index.html">← Public Home</a></li>
 
     </ul>
 
@@ -60,30 +64,30 @@
 
     <div class="form-container">
 
-        <form id="eventForm">
+        <form id="eventForm" action="add_event.php" method="POST">
 
             <div class="row">
 
                 <div class="input-box">
 
-                    <label>Event Name</label>
+                    <label for="event_name">Event Name</label>
 
-                    <input type="text" placeholder="Enter Event Name" required>
+                    <input type="text" id="event_name" name="event_name" placeholder="Enter Event Name" required>
 
                 </div>
 
                 <div class="input-box">
 
-                    <label>Category</label>
+                    <label for="category">Category</label>
 
-                    <select required>
+                    <select id="category" name="category" required>
 
-                        <option>Select Category</option>
-                        <option>Workshop</option>
-                        <option>Seminar</option>
-                        <option>Hackathon</option>
-                        <option>Sports</option>
-                        <option>Cultural</option>
+                        <option value="">Select Category</option>
+                        <option value="Workshop">Workshop</option>
+                        <option value="Seminar">Seminar</option>
+                        <option value="Hackathon">Hackathon</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Cultural">Cultural</option>
 
                     </select>
 
@@ -95,37 +99,17 @@
 
                 <div class="input-box">
 
-                    <label>Event Date</label>
+                    <label for="event_date">Event Date</label>
 
-                    <input type="date" required>
-
-                </div>
-
-                <div class="input-box">
-
-                    <label>Event Time</label>
-
-                    <input type="time" required>
-
-                </div>
-
-            </div>
-
-            <div class="row">
-
-                <div class="input-box">
-
-                    <label>Venue</label>
-
-                    <input type="text" placeholder="Enter Venue" required>
+                    <input type="date" id="event_date" name="event_date" required>
 
                 </div>
 
                 <div class="input-box">
 
-                    <label>Organizer</label>
+                    <label for="event_time">Event Time</label>
 
-                    <input type="text" placeholder="Organizer Name" required>
+                    <input type="time" id="event_time" name="event_time">
 
                 </div>
 
@@ -135,20 +119,40 @@
 
                 <div class="input-box">
 
-                    <label>Maximum Participants</label>
+                    <label for="venue">Venue</label>
 
-                    <input type="number" placeholder="100" required>
+                    <input type="text" id="venue" name="venue" placeholder="Enter Venue" required>
 
                 </div>
 
                 <div class="input-box">
 
-                    <label>Status</label>
+                    <label for="organizer">Organizer / Club</label>
 
-                    <select>
+                    <input type="text" id="organizer" name="organizer" placeholder="Organizer Name">
 
-                        <option>Pending</option>
-                        <option>Approved</option>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="input-box">
+
+                    <label for="max_participants">Maximum Participants</label>
+
+                    <input type="number" id="max_participants" name="max_participants" placeholder="100">
+
+                </div>
+
+                <div class="input-box">
+
+                    <label for="status">Initial Status</label>
+
+                    <select id="status" name="status">
+
+                        <option value="Pending">Pending (Requires College Approval)</option>
+                        <option value="Approved">Approved</option>
 
                     </select>
 
@@ -158,17 +162,9 @@
 
             <div class="input-box">
 
-                <label>Description</label>
+                <label for="description">Description</label>
 
-                <textarea rows="6" placeholder="Write event description..." required></textarea>
-
-            </div>
-
-            <div class="input-box">
-
-                <label>Upload Event Banner</label>
-
-                <input type="file">
+                <textarea id="description" name="description" rows="6" placeholder="Write event description..." required></textarea>
 
             </div>
 
@@ -185,8 +181,6 @@
     </div>
 
 </div>
-
-<script src="add-event.js"></script>
 
 </body>
 

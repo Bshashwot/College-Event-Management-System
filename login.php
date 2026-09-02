@@ -9,39 +9,68 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     exit();
 }
 
-$student_id = $_POST["student_id"];
+$student_id = trim($_POST["student_id"]);
 $password = $_POST["password"];
 
-$sql = "SELECT * FROM student WHERE student_id = '$student_id'";
 
-$result = mysqli_query($conn, $sql);
+/* Find student by ID or Email */
 
-if (!$result) {
-    die("SQL Error: " . mysqli_error($conn));
+$sql = "SELECT student_id, name, email, phone, password
+        FROM student
+        WHERE student_id = ? OR email = ?";
+
+$stmt = mysqli_prepare($conn, $sql);
+
+if (!$stmt) {
+    die("Database Error: " . mysqli_error($conn));
 }
 
-if (mysqli_num_rows($result) == 1) {
+mysqli_stmt_bind_param($stmt, "ss", $student_id, $student_id);
+mysqli_stmt_execute($stmt);
 
-    $student = mysqli_fetch_assoc($result);
+$result = mysqli_stmt_get_result($stmt);
 
-    if ($password == $student["password"]) {
 
-        $_SESSION["student_id"] = $student["student_id"];
-        $_SESSION["student_name"] = $student["name"];
+/* User not found */
 
-        header("Location: student.html");
-        exit();
+if (mysqli_num_rows($result) == 0) {
 
-    } else {
+    echo "<script>
+            alert('Account not found. Please check your Student ID / Email or sign up.');
+            window.location.href = 'login.html';
+          </script>";
 
-        echo "Incorrect password.";
-
-    }
-
-} else {
-
-    echo "Student ID not found. Please sign up first.";
-
+    exit();
 }
+
+
+$student = mysqli_fetch_assoc($result);
+
+
+/* Wrong Password */
+
+if ($password !== $student["password"]) {
+
+    echo "<script>
+            alert('Incorrect password. Please try again.');
+            window.location.href = 'login.html';
+          </script>";
+
+    exit();
+}
+
+
+/* Correct ID and Password */
+
+$_SESSION["student_id"] = $student["student_id"];
+$_SESSION["student_name"] = $student["name"];
+$_SESSION["student_email"] = $student["email"];
+$_SESSION["student_phone"] = $student["phone"];
+
+mysqli_stmt_close($stmt);
+mysqli_close($conn);
+
+header("Location: dashboard.php");
+exit();
 
 ?>

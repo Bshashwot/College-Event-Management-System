@@ -1,3 +1,24 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["college_id"])) {
+    header("Location: login.html");
+    exit();
+}
+
+include "../config/db.php";
+
+$college_id = intval($_SESSION["college_id"]);
+$stmt = mysqli_prepare($conn, "SELECT * FROM college WHERE college_id = ?");
+mysqli_stmt_bind_param($stmt, "i", $college_id);
+mysqli_stmt_execute($stmt);
+$res = mysqli_stmt_get_result($stmt);
+$college = mysqli_fetch_assoc($res);
+mysqli_stmt_close($stmt);
+
+$c_name = $college ? $college["name"] : (isset($_SESSION["college_name"]) ? $_SESSION["college_name"] : "Campus Faculty");
+$c_email = $college ? $college["email"] : (isset($_SESSION["college_email"]) ? $_SESSION["college_email"] : "college@example.com");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,36 +62,31 @@
                 <div class="profile-icon">🎓</div>
 
                 <div>
-                    <h2>College Event Management</h2>
-                    <p>College / Faculty Account</p>
+                    <h2><?php echo htmlspecialchars($c_name); ?></h2>
+                    <p>Authorized College / Faculty Portal</p>
                 </div>
             </div>
 
             <div class="profile-details">
 
                 <div class="detail">
+                    <label>College ID</label>
+                    <p>#<?php echo htmlspecialchars($college_id); ?></p>
+                </div>
+
+                <div class="detail">
                     <label>College Name</label>
-                    <p>ABC College</p>
+                    <p><?php echo htmlspecialchars($c_name); ?></p>
                 </div>
 
                 <div class="detail">
                     <label>Email</label>
-                    <p>college@example.com</p>
-                </div>
-
-                <div class="detail">
-                    <label>Phone</label>
-                    <p>9800000000</p>
-                </div>
-
-                <div class="detail">
-                    <label>Address</label>
-                    <p>Kathmandu, Nepal</p>
+                    <p><?php echo htmlspecialchars($c_email); ?></p>
                 </div>
 
                 <div class="detail">
                     <label>Account Type</label>
-                    <p>College / Faculty</p>
+                    <p>College / Faculty Reviewer</p>
                 </div>
 
                 <div class="detail">
@@ -80,7 +96,7 @@
 
             </div>
 
-            <button>Edit Profile</button>
+            <button type="button" onclick="alert('College profile is active and verified by CEMS Administration.')">Verified Account</button>
 
         </div>
 

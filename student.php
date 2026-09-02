@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 if (!isset($_SESSION["student_id"])) {
@@ -7,44 +6,46 @@ if (!isset($_SESSION["student_id"])) {
     exit();
 }
 
-include "../config/db.php";
+include "config/db.php";
 
-$student_id = $_SESSION["student_id"];
+$student_id = intval($_SESSION["student_id"]);
 
-$sql = "SELECT student_id, name, email, phone
-        FROM student
-        WHERE student_id = '$student_id'";
-
-$result = mysqli_query($conn, $sql);
+$sql = "SELECT student_id, name, email, phone FROM student WHERE student_id = ?";
+$stmt = mysqli_prepare($conn, $sql);
+mysqli_stmt_bind_param($stmt, "i", $student_id);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
 
 if (!$result || mysqli_num_rows($result) != 1) {
-    die("Student information not found.");
+    die("Student information not found. <a href='logout.php'>Logout and try again</a>");
 }
 
 $student = mysqli_fetch_assoc($result);
+mysqli_stmt_close($stmt);
 
-$registered_sql = "SELECT COUNT(*) AS total
-                   FROM registration
-                   WHERE student_id = '$student_id'";
+// Registered count
+$reg_stmt = mysqli_prepare($conn, "SELECT COUNT(*) AS total FROM registration WHERE student_id = ?");
+mysqli_stmt_bind_param($reg_stmt, "i", $student_id);
+mysqli_stmt_execute($reg_stmt);
+$reg_res = mysqli_stmt_get_result($reg_stmt);
+$registered = $reg_res ? mysqli_fetch_assoc($reg_res)["total"] : 0;
+mysqli_stmt_close($reg_stmt);
 
-$registered_result = mysqli_query($conn, $registered_sql);
-$registered = mysqli_fetch_assoc($registered_result)["total"];
+// Approved count
+$app_stmt = mysqli_prepare($conn, "SELECT COUNT(*) AS total FROM registration WHERE student_id = ? AND status = 'Approved'");
+mysqli_stmt_bind_param($app_stmt, "i", $student_id);
+mysqli_stmt_execute($app_stmt);
+$app_res = mysqli_stmt_get_result($app_stmt);
+$approved = $app_res ? mysqli_fetch_assoc($app_res)["total"] : 0;
+mysqli_stmt_close($app_stmt);
 
-$approved_sql = "SELECT COUNT(*) AS total
-                 FROM registration
-                 WHERE student_id = '$student_id'
-                 AND status = 'Approved'";
-
-$approved_result = mysqli_query($conn, $approved_sql);
-$approved = mysqli_fetch_assoc($approved_result)["total"];
-
-$pending_sql = "SELECT COUNT(*) AS total
-                FROM registration
-                WHERE student_id = '$student_id'
-                AND status = 'Pending'";
-
-$pending_result = mysqli_query($conn, $pending_sql);
-$pending = mysqli_fetch_assoc($pending_result)["total"];
+// Pending count
+$pen_stmt = mysqli_prepare($conn, "SELECT COUNT(*) AS total FROM registration WHERE student_id = ? AND status = 'Pending'");
+mysqli_stmt_bind_param($pen_stmt, "i", $student_id);
+mysqli_stmt_execute($pen_stmt);
+$pen_res = mysqli_stmt_get_result($pen_stmt);
+$pending = $pen_res ? mysqli_fetch_assoc($pen_res)["total"] : 0;
+mysqli_stmt_close($pen_stmt);
 
 ?>
 
@@ -54,7 +55,6 @@ $pending = mysqli_fetch_assoc($pending_result)["total"];
 <head>
 
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Student Profile</title>
@@ -68,7 +68,7 @@ $pending = mysqli_fetch_assoc($pending_result)["total"];
 <header>
 
     <div class="logo">
-        <h2>🎓 CEMS</h2>
+        <a href="index.html" style="text-decoration:none; color:white;"><h2>🎓 CEMS</h2></a>
     </div>
 
     <nav>
@@ -76,11 +76,11 @@ $pending = mysqli_fetch_assoc($pending_result)["total"];
         <ul>
 
             <li>
-                <a href="../index.html">Home</a>
+                <a href="index.html">Home</a>
             </li>
 
             <li>
-                <a href="dashboard.html">Dashboard</a>
+                <a href="dashboard.php">Dashboard</a>
             </li>
 
             <li>
@@ -88,11 +88,15 @@ $pending = mysqli_fetch_assoc($pending_result)["total"];
             </li>
 
             <li>
-                <a href="register.php">My Registration</a>
+                <a href="register.php">My Registrations</a>
             </li>
 
             <li>
-                <a href="notification.html">Notifications</a>
+                <a href="student.php" class="active">Profile</a>
+            </li>
+
+            <li>
+                <a href="notification.php">Notifications</a>
             </li>
 
             <li>
@@ -146,7 +150,7 @@ $pending = mysqli_fetch_assoc($pending_result)["total"];
                 <span>Phone</span>
 
                 <span>
-                    <?php echo htmlspecialchars($student["phone"]); ?>
+                    <?php echo htmlspecialchars(!empty($student["phone"]) ? $student["phone"] : "Not provided"); ?>
                 </span>
 
             </div>
@@ -189,13 +193,13 @@ $pending = mysqli_fetch_assoc($pending_result)["total"];
 
         <div class="buttons">
 
-            <button type="button">
-                Edit Profile
+            <button type="button" onclick="alert('Profile details are synced with your student account.')">
+                Active Account
             </button>
 
-            <button type="button">
-                Change Password
-            </button>
+            <a href="logout.php"><button type="button">
+                Logout
+            </button></a>
 
         </div>
 

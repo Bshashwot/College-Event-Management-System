@@ -13,21 +13,23 @@
     <div class="login-box">
 
         <h2>🎓 CEMS</h2>
-        <h3>College Login</h3>
+        <h3>College / Faculty Login</h3>
 
-        <form>
+        <form action="login.php" method="POST">
 
-            <label for="username">College Username</label>
+            <label for="username">College ID / Email</label>
             <input
                 type="text"
                 id="username"
-                placeholder="Enter username"
+                name="college_id"
+                placeholder="Enter College ID or Email"
                 required>
 
             <label for="password">Password</label>
             <input
                 type="password"
                 id="password"
+                name="password"
                 placeholder="Enter password"
                 required>
 
@@ -35,7 +37,14 @@
 
         </form>
 
-        <a href="../index.html">Back to Home</a>
+        <div style="margin-top: 15px; text-align: center; font-size: 13px;">
+            <a href="../login.html" style="color: #0d6efd; text-decoration: none; margin: 0 6px;">Student Login</a> |
+            <a href="../adminmodule/adminlogin.html" style="color: #0d6efd; text-decoration: none; margin: 0 6px;">Admin Login</a>
+        </div>
+
+        <div style="margin-top: 12px; text-align: center;">
+            <a href="../index.html" style="color: #666; text-decoration: none; font-size: 13px;">← Back to Home</a>
+        </div>
 
     </div>
 

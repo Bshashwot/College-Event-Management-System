@@ -1,15 +1,14 @@
 <?php
-
 session_start();
 
 if (!isset($_SESSION["student_id"])) {
-    header("Location: login.php");
+    header("Location: login.html");
     exit();
 }
 
-include "../config/db.php";
+include "config/db.php";
 
-$student_id = $_SESSION["student_id"];
+$student_id = intval($_SESSION["student_id"]);
 
 $sql = "SELECT
             r.registration_id,
@@ -20,14 +19,18 @@ $sql = "SELECT
             e.venue
         FROM registration r
         JOIN event e ON r.event_id = e.event_id
-        WHERE r.student_id = $student_id
+        WHERE r.student_id = ?
         ORDER BY e.event_date ASC";
 
-$result = mysqli_query($conn, $sql);
+$stmt = mysqli_prepare($conn, $sql);
 
-if (!$result) {
+if (!$stmt) {
     die("Database Error: " . mysqli_error($conn));
 }
+
+mysqli_stmt_bind_param($stmt, "i", $student_id);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
 
 ?>
 
@@ -50,7 +53,7 @@ if (!$result) {
 <header>
 
     <div class="logo">
-        <h2>🎓 CEMS</h2>
+        <a href="index.html" style="text-decoration:none; color:white;"><h2>🎓 CEMS</h2></a>
     </div>
 
     <nav>
@@ -58,11 +61,11 @@ if (!$result) {
         <ul>
 
             <li>
-                <a href="../index.html">Home</a>
+                <a href="index.html">Home</a>
             </li>
 
             <li>
-                <a href="dashboard.html">Dashboard</a>
+                <a href="dashboard.php">Dashboard</a>
             </li>
 
             <li>
@@ -70,19 +73,19 @@ if (!$result) {
             </li>
 
             <li>
-                <a href="student.html">Profile</a>
+                <a href="register.php" class="active">My Registrations</a>
             </li>
 
             <li>
-                <a href="notification.html">Notifications</a>
+                <a href="student.php">Profile</a>
             </li>
 
             <li>
-                <a href="register.php">My Registrations</a>
+                <a href="notification.php">Notifications</a>
             </li>
 
             <li>
-                <a href="login.php">Logout</a>
+                <a href="logout.php">Logout</a>
             </li>
 
         </ul>
@@ -96,12 +99,12 @@ if (!$result) {
     <h1>My Registrations</h1>
 
     <p>
-        You have successfully registered for the following events.
+        You have registered for the following events.
     </p>
 
     <div class="registration-container">
 
-        <?php if (mysqli_num_rows($result) > 0) { ?>
+        <?php if ($result && mysqli_num_rows($result) > 0) { ?>
 
             <?php while ($row = mysqli_fetch_assoc($result)) { ?>
 
@@ -149,24 +152,24 @@ if (!$result) {
 
                     <div class="buttons">
 
-                        <button type="button">
-                            View Details
-                        </button>
+                        <a href="event.php"><button type="button">
+                            View Event
+                        </button></a>
 
                         <?php if ($row["status"] == "Approved") { ?>
 
-                            <button type="button">
-                                Download Pass
+                            <button type="button" onclick="alert('Event Pass for ' + <?php echo json_encode($row['event_name']); ?> + ' is ready! Check-in at the venue.')">
+                                View Pass
                             </button>
 
                         <?php } elseif ($row["status"] == "Pending") { ?>
 
-                            <form action="cancel_registration.php" method="POST">
+                            <form action="cancel_registration.php" method="POST" onsubmit="return confirm('Are you sure you want to cancel this registration?');">
 
                                 <input
                                     type="hidden"
                                     name="registration_id"
-                                    value="<?php echo $row["registration_id"]; ?>"
+                                    value="<?php echo htmlspecialchars($row["registration_id"]); ?>"
                                 >
 
                                 <button type="submit">
@@ -185,9 +188,14 @@ if (!$result) {
 
         <?php } else { ?>
 
-            <p>
-                No event registrations found.
-            </p>
+            <div style="text-align: center; width: 100%; grid-column: 1 / -1; padding: 40px 20px;">
+                <p style="font-size: 1.1rem; color: #666; margin-bottom: 20px;">
+                    You have not registered for any events yet.
+                </p>
+                <a href="event.php">
+                    <button style="padding: 10px 24px; background: #0056b3; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem;">Browse Events</button>
+                </a>
+            </div>
 
         <?php } ?>
 

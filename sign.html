@@ -2,14 +2,10 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Student Registration</title>
-
     <link rel="stylesheet" href="signup.css">
-
 </head>
 
 <body>
@@ -25,20 +21,22 @@
 
     </div>
 
+
     <div class="right-panel">
 
         <h2>Student Registration</h2>
 
         <p>Create your account to register for college events.</p>
 
-        <form action="sign.php" method="POST" autocomplete="off">
 
+        <form action="signup.php" method="POST" autocomplete="off">
             <div class="input-box">
 
-                <label>Full Name</label>
+                <label for="name">Full Name</label>
 
                 <input
                     type="text"
+                    id="name"
                     name="name"
                     placeholder="Enter your full name"
                     required
@@ -46,12 +44,14 @@
 
             </div>
 
+
             <div class="input-box">
 
-                <label>Student ID</label>
+                <label for="student_id">Student ID</label>
 
                 <input
                     type="text"
+                    id="student_id"
                     name="student_id"
                     placeholder="Enter your student ID"
                     required
@@ -59,12 +59,14 @@
 
             </div>
 
+
             <div class="input-box">
 
-                <label>Email</label>
+                <label for="email">Email</label>
 
                 <input
                     type="email"
+                    id="email"
                     name="email"
                     placeholder="Enter your email"
                     required
@@ -72,12 +74,14 @@
 
             </div>
 
+
             <div class="input-box">
 
-                <label>Phone Number</label>
+                <label for="phone">Phone Number</label>
 
                 <input
                     type="text"
+                    id="phone"
                     name="phone"
                     placeholder="98XXXXXXXX"
                     required
@@ -85,12 +89,14 @@
 
             </div>
 
+
             <div class="input-box">
 
-                <label>Password</label>
+                <label for="password">Password</label>
 
                 <input
                     type="password"
+                    id="password"
                     name="password"
                     placeholder="Create password"
                     required
@@ -98,12 +104,14 @@
 
             </div>
 
+
             <div class="input-box">
 
-                <label>Confirm Password</label>
+                <label for="confirm_password">Confirm Password</label>
 
                 <input
                     type="password"
+                    id="confirm_password"
                     name="confirm_password"
                     placeholder="Confirm password"
                     required
@@ -111,11 +119,13 @@
 
             </div>
 
+
             <button type="submit">
                 Create Account
             </button>
 
         </form>
+
 
         <div class="login-link">
 
@@ -127,10 +137,13 @@
 
         </div>
 
+        <div style="margin-top: 15px; text-align: center;">
+            <a href="index.html" style="color: #666; text-decoration: none; font-size: 13px;">← Back to Home</a>
+        </div>
+
     </div>
 
 </div>
 
 </body>
-
 </html>
