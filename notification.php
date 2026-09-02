@@ -21,7 +21,7 @@ if ($student_id) {
     $res = mysqli_query($conn, "SELECT * FROM notification WHERE student_id IS NULL ORDER BY notification_date DESC");
     if ($res) {
         while ($row = mysqli_fetch_assoc($res)) {
-            $notifications[] = $row;
+            $notifications[] = $row;//notification
         }
     }
 }
