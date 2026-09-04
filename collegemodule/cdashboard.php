@@ -160,7 +160,7 @@ $req_res = mysqli_query($conn, "SELECT * FROM event ORDER BY event_id DESC LIMIT
 
                 <a href="notification.php">
                     <h3>Notifications</h3>
-                    <p>Check recent event notifications.</p>
+                    <p>Check recent event notifications</p>
                 </a>
 
                 <a href="profile.php">

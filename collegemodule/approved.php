@@ -74,7 +74,7 @@ $approved_res = mysqli_query($conn, "SELECT * FROM event WHERE status = 'Approve
                     <h3>No Approved Events Yet</h3>
                     <p style="color: #666; margin-top: 10px;">Check the <a href="eventrq.php" style="color: #0056b3; font-weight: bold;">Event Requests</a> page to review and approve submitted events.</p>
                 </div>
-            <?php } ?>
+            <?php } ?> // no approved event 
 
         </div>
 
