@@ -5,7 +5,7 @@ include "../config/db.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    $college_id = trim($_POST["college_id"]);
+    $login_id = trim($_POST["college_id"]);
     $password = $_POST["password"];
 
     $sql = "SELECT * FROM college WHERE college_id = ? OR email = ?";
@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         die("Database Error: " . mysqli_error($conn));
     }
 
-    mysqli_stmt_bind_param($stmt, "ss", $college_id, $college_id);
+    mysqli_stmt_bind_param($stmt, "ss", $login_id, $login_id);
 
     mysqli_stmt_execute($stmt);
 
