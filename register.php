@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+// Check if the student is logged in
 if (!isset($_SESSION["student_id"])) {
     header("Location: login.html");
     exit();
