@@ -127,7 +127,7 @@ if (empty($db_events)) {
                     >
 
                     <button type="submit">
-                        Register Now
+                        Register Now.
                     </button>
 
                 </form>
